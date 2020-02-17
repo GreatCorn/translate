@@ -63,7 +63,16 @@
 				padding: 2px;
 				font-family: Helvetica;
 				min-width: 100%;
+				min-height: 2em;
 				background-color: #f5f5f5;
+			}
+			.btn{
+				font-size: 36px;
+				margin-left: 16px;
+				margin-right: 16px;
+				padding: 2px;
+				width: 3em;
+				height: 3em;
 			}
 			textarea{
 				font-family: Helvetica;
@@ -90,6 +99,7 @@
 			}
 			textarea[readonly], textarea[readonly="readonly"], textarea[placeholder], textarea[placeholder="placeholder"]{
 				font-size: 50px;
+				font-weight: 500;
 			}
 		</style>
 		<title>  Ъ Trъnslъtъ </title>
@@ -99,6 +109,7 @@
 				const RUSAlphabet = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ы','ь','э','ю','я','і','ї','є','ґ','ъ'];
 				const ENGAlphabet = ['a','b','v','g','d','e','ö','j','z','i','y','k','l','m','n','o','p','r','s','t','u','f','h','c','å','x','ä','ý','ÿ','é','q','ä','i','ï','w','g','ü'];
 				const SRBAlphabet = ['а','б','в','г','д','ђ','е','ж','з','и','j','к','љ','м','њ','о','п','р','с','ћ','у','ф','х','ц','ч','џ','ш','и','j','е','jу','jа','и','jи','е','г',''];
+				const POLAlphabet = ['a','b','w','g','d','je','io','ż','z','i','j','k','l','m','n','o','p','r','s','t','u','f','h','ts','ć','cz','ś','y','i','e','jó','ja','i','ji','je','g','ą'];
 				var inputText = document.getElementById('input_box').value;
 				var outputBox = document.getElementById('output_box');
 				var lang = document.getElementById("langbox");
@@ -128,6 +139,12 @@
 						inputText = inputText.replace(RegExp(ENGAlphabet[i].toUpperCase(), 'g'), SRBAlphabet[i].toUpperCase())
 					}
 				}
+				if (selected_lang == "value8"){
+					for (var i=0; i<RUSAlphabet.length; i++){
+						inputText = inputText.replace(RegExp(RUSAlphabet[i], 'g'), POLAlphabet[i])
+						inputText = inputText.replace(RegExp(RUSAlphabet[i].toUpperCase(), 'g'), POLAlphabet[i].toUpperCase())
+					}
+				}
 				if (selected_lang == "value1" || selected_lang == "value3" || selected_lang == "value5" || selected_lang == "value6"){
 					for (var i=0; i<vowels.length; i++){
 						inputText = inputText.replace(RegExp(vowels[i], 'g'), replace)
@@ -143,6 +160,12 @@
 					}
 				}
 				outputBox.value = inputText;
+			}
+			
+			function copyText(){
+				var outputBox = document.getElementById('output_box');
+				outputBox.select();
+				document.execCommand('copy');
 			}
 		</script>
 		<link rel="shortcut icon" href="icon.png" type="image/x-icon">
@@ -168,9 +191,11 @@
 				<option value="value5">ЪЬ</option>
 				<option value="value6">Å</option>
 				<option value="value7">Cрпски</option>
+				<option value="value8">Polskie</option>
 			</select>
 			<hr>
 			<textarea id="output_box" readonly=true rows="1" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Пъръвъд" style="overflow: auto hidden; box-sizing: border-box; height: auto; direction: ltr; padding-bottom: 2px;"></textarea>
+			<button onclick="copyText()" class=btn><img width=80em height=80em src=copy.png></button>
 		</div>
 	</body>
 </html>
