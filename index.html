@@ -1,0 +1,176 @@
+<html lang="ru">
+	<head>
+		<style type="text/css">
+			@font-face {
+				font-family: "OpenSansBold";
+				src: url("OpenSansBold.ttf");
+			}
+			
+			.head_title {
+				text-align: left;
+				font-family: Helvetica;
+				color: #707070;
+				padding: 1px;
+				font-size: 50px;
+				letter-spacing: 3px;
+				font-weight: 500;
+				margin-left: 4px;
+				margin-right: 4px;
+			}
+			.input_box {
+				box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+				height: calc(100vh - 56px);
+				overflow-x: hidden;
+				overflow-y: auto;
+				position: relative;
+				height: 100%;
+				position: relative;
+				width: 100%;
+			}
+			.head_image {
+				margin-left: 16px;
+				margin-right: 16px;
+			}
+			header {
+				display: block;
+				z-index: 986;
+				transition: box-shadow 250ms;
+				min-width: 320px;
+				position: relative;
+			}
+			div {
+				display: block;
+			}
+			body{
+				color: #777777;
+				background-color: #f5f5f5;
+			}
+			p {
+				display: block;
+				margin-block-start: 0.5em;
+				margin-block-end: 0.5em;
+				margin-inline-start: 0px;
+				margin-inline-end: 0px;
+				padding: 1px;
+			}
+			.combobox{
+				width=100%;
+				font-size: 36px;
+				margin: -4px 0 0;
+				padding-left: 16px;
+				padding-right: 90px;
+				height: auto;
+				padding: 2px;
+				font-family: Helvetica;
+				min-width: 100%;
+				background-color: #f5f5f5;
+			}
+			textarea{
+				font-family: Helvetica;
+				border-style: solid;
+				padding: 2px;
+				box-sizing: border-box;
+				height: auto;
+				direction: ltr;
+				padding-bottom: 2px;
+				min-height: 10em;
+				overflow-y: auto!important;
+				border-bottom-width: 0;
+				border-color: #909090;
+				color: #333;
+				font-size: 36px;
+				margin: -4px 0 0;
+				padding-left: 16px;
+				padding-right: 90px;
+				resize: none;
+				width: 100%;
+				border-left: none;
+				border-right: none;
+				border-top: none;
+			}
+			textarea[readonly], textarea[readonly="readonly"], textarea[placeholder], textarea[placeholder="placeholder"]{
+				font-size: 50px;
+			}
+		</style>
+		<title>  Ъ Trъnslъtъ </title>
+		<script type="text/javascript">
+			function inputChange(){
+				const vowels = ['а', 'е', 'и', 'о', 'у', 'ы', 'э', 'ю', 'я', 'і', 'ї', 'є', 'ё', 'a', 'e', 'i', 'o', 'u'];
+				const RUSAlphabet = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ы','ь','э','ю','я','і','ї','є','ґ','ъ'];
+				const ENGAlphabet = ['a','b','v','g','d','e','ö','j','z','i','y','k','l','m','n','o','p','r','s','t','u','f','h','c','å','x','ä','ý','ÿ','é','q','ä','i','ï','w','g','ü'];
+				const SRBAlphabet = ['а','б','в','г','д','ђ','е','ж','з','и','j','к','љ','м','њ','о','п','р','с','ћ','у','ф','х','ц','ч','џ','ш','и','j','е','jу','jа','и','jи','е','г',''];
+				var inputText = document.getElementById('input_box').value;
+				var outputBox = document.getElementById('output_box');
+				var lang = document.getElementById("langbox");
+				var selected_lang = lang.options[lang.selectedIndex].value;
+				var replace = "";
+				if (selected_lang == "value1" || selected_lang == "value2"){
+					replace = "ъ";
+				}
+				if (selected_lang == "value3" || selected_lang == "value4"){
+					replace = "ь";
+				}
+				if (selected_lang == "value5"){
+					replace = "ъь";
+				}
+				if (selected_lang == "value6"){
+					replace = "å";
+					for (var i=0; i<RUSAlphabet.length; i++){
+						inputText = inputText.replace(RegExp(RUSAlphabet[i], 'g'), ENGAlphabet[i])
+						inputText = inputText.replace(RegExp(RUSAlphabet[i].toUpperCase(), 'g'), ENGAlphabet[i].toUpperCase())
+					}
+				}
+				if (selected_lang == "value7"){
+					for (var i=0; i<RUSAlphabet.length; i++){
+						inputText = inputText.replace(RegExp(RUSAlphabet[i], 'g'), SRBAlphabet[i])
+						inputText = inputText.replace(RegExp(RUSAlphabet[i].toUpperCase(), 'g'), SRBAlphabet[i].toUpperCase())
+						inputText = inputText.replace(RegExp(ENGAlphabet[i], 'g'), SRBAlphabet[i])
+						inputText = inputText.replace(RegExp(ENGAlphabet[i].toUpperCase(), 'g'), SRBAlphabet[i].toUpperCase())
+					}
+				}
+				if (selected_lang == "value1" || selected_lang == "value3" || selected_lang == "value5" || selected_lang == "value6"){
+					for (var i=0; i<vowels.length; i++){
+						inputText = inputText.replace(RegExp(vowels[i], 'g'), replace)
+						inputText = inputText.replace(RegExp(vowels[i].toUpperCase(), 'g'), replace.toUpperCase())
+					}
+				}
+				if (selected_lang == "value2" || selected_lang == "value4"){
+					for (var i=0; i<RUSAlphabet.length; i++){
+						inputText = inputText.replace(RegExp(RUSAlphabet[i], 'g'), replace)
+						inputText = inputText.replace(RegExp(RUSAlphabet[i].toUpperCase(), 'g'), replace.toUpperCase())
+						inputText = inputText.replace(RegExp(ENGAlphabet[i], 'g'), replace)
+						inputText = inputText.replace(RegExp(ENGAlphabet[i].toUpperCase(), 'g'), replace.toUpperCase())
+					}
+				}
+				outputBox.value = inputText;
+			}
+		</script>
+		<link rel="shortcut icon" href="icon.png" type="image/x-icon">
+	</head>
+	<body>
+		<header role="banner" style="background-color:rgba(255,255,255,1)">
+			<div class="head_title">
+				<p>
+				<img class="head_image" src=icon.png align=CENTER width=80em height=80em>
+					Ъ Trъnslъtъ
+				</p>
+			</div>
+		</header>
+		<hr>
+		<div class="input_box">
+			<textarea id="input_box" oninput="inputChange()" rows="1" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Ввъдътъ тъкст" style="overflow: auto hidden; box-sizing: border-box; height: auto; direction: ltr; padding-bottom: 2px;"></textarea>
+			<hr>
+			<select id="langbox" onchange="inputChange()" class="combobox" name="Ъзък/дъълъкт">
+				<option value="value1">Ъ (вълънъй пъръг)</option>
+				<option value="value2">Ъ (ъъъъъъ)</option>
+				<option value="value3">Ь (твьрьжньь мьсь)</option>
+				<option value="value4">Ь (ьььььь)</option>
+				<option value="value5">ЪЬ</option>
+				<option value="value6">Å</option>
+				<option value="value7">Cрпски</option>
+			</select>
+			<hr>
+			<textarea id="output_box" readonly=true rows="1" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Пъръвъд" style="overflow: auto hidden; box-sizing: border-box; height: auto; direction: ltr; padding-bottom: 2px;"></textarea>
+		</div>
+	</body>
+</html>
