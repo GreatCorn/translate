@@ -243,7 +243,7 @@
 		<link rel="shortcut icon" href="icon.png" type="image/x-icon">
 		<link rel="manifest" href="manifest.json" crossorigin="use-credentials">
 	</head>
-	<body>
+	<body onload="translate()">
 		<header role="banner" style="background-color:rgba(255,255,255,1)">
 			<div class="head_title">
 				<p>
@@ -257,15 +257,15 @@
 			<textarea id="input_box" oninput="inputChange()" rows="1" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Ввъдътъ тъкст" style="overflow: auto hidden; box-sizing: border-box; height: auto; direction: ltr; padding-bottom: 2px;"></textarea>
 			<hr>
 			<select id="langbox" onchange="inputChange()" class="combobox" name="Ъзък/дъълъкт">
-				<option value="value1">Ъ (вълънъй пъръг)</option>
-				<option value="value2">Ъ (ъъъъъъ)</option>
-				<option value="value3">Ь (твьрьжньь мьсь)</option>
-				<option value="value4">Ь (ьььььь)</option>
-				<option value="value5">Öъ</option>
-				<option value="value6">Å</option>
-				<option value="value7">Cрпски</option>
-				<option value="value8">Polskie</option>
-				<option value="value0">Пъльзъвътъльскъй</option>
+				<option id="pirog" value="value1">Ъ (вълънъй пъръг)</option>
+				<option id="pirogP" value="value2">Ъ (ъъъъъъ)</option>
+				<option id="meat" value="value3">Ь (твьрьжньь мьсь)</option>
+				<option id="meatP" value="value4">Ь (ьььььь)</option>
+				<option id="blyat" value="value5">Öъ</option>
+				<option id="sverige" value="value6">Å</option>
+				<option id="serbian" value="value7">Cрпски</option>
+				<option id="polish" value="value8">Polskie</option>
+				<option id="custom" value="value0">Пъльзъвътъльскъй</option>
 			</select>
 			<input oninput="inputChange()" id="lang_custom" class="custom_entry"></input>
 			<hr>
@@ -274,5 +274,17 @@
 		<button onclick="clearText()" class=btn><img width=80em height=80em src=clear.png></button>
 		<button onclick="pasteText()" class=btn><img width=80em height=80em src=paste.png></button>
 		<button onclick="copyText()" class=btn><img width=80em height=80em src=copy.png></button>
+		<script type="text/javascript">
+		function translate(){
+			var userLang = navigator.language || navigator.userLanguage;
+			if (userLang == "en") {
+				document.getElementById('input_box').placeholder = "Ъntъr tъxt";
+				document.getElementById('output_box').placeholder = "Trъnslъtъъn";
+				document.getElementById("pirog").innerHTML = "Ъ (vъъlъnъy pъrъg)";
+				document.getElementById("meat").innerHTML = "Ь (tvьrьzhnьь mььsь)";
+				document.getElementById("custom").innerHTML = "Cъstъm";
+			}
+		}
+		</script>
 	</body>
 </html>
