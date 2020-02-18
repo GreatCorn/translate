@@ -19,7 +19,7 @@
 			}
 			.input_box {
 				box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
-				height: calc(100vh - 56px);
+				max-height: 1100px;
 				overflow-x: hidden;
 				overflow-y: auto;
 				position: relative;
@@ -68,8 +68,10 @@
 			}
 			.btn{
 				font-size: 36px;
-				margin-left: 16px;
-				margin-right: 16px;
+				margin-left: 0.1em;
+				margin-right: 0.1em;
+				margin-block-start: 0.5em;
+				margin-block-end: 0.5em;
 				padding: 2px;
 				width: 3em;
 				height: 3em;
@@ -167,6 +169,20 @@
 				outputBox.select();
 				document.execCommand('copy');
 			}
+			
+			function clearText(){
+				document.getElementById('input_box').value = '';
+				inputChange();
+			}
+			
+			function pasteText(){
+				navigator.clipboard.readText().then(text => document.getElementById('input_box').value = text).then(inputChange);
+				//inputBox = document.getElementById('input_box');
+				//inputBox.focus();
+				//document.execCommand("Paste", null, null);
+				//document.getElementById('input_box').value;
+				inputChange();
+			}
 		</script>
 		<link rel="shortcut icon" href="icon.png" type="image/x-icon">
 	</head>
@@ -195,7 +211,9 @@
 			</select>
 			<hr>
 			<textarea id="output_box" readonly=true rows="1" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Пъръвъд" style="overflow: auto hidden; box-sizing: border-box; height: auto; direction: ltr; padding-bottom: 2px;"></textarea>
-			<button onclick="copyText()" class=btn><img width=80em height=80em src=copy.png></button>
 		</div>
+		<button onclick="clearText()" class=btn><img width=80em height=80em src=clear.png></button>
+		<button onclick="pasteText()" class=btn><img width=80em height=80em src=paste.png></button>
+		<button onclick="copyText()" class=btn><img width=80em height=80em src=copy.png></button>
 	</body>
 </html>
