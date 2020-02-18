@@ -54,17 +54,26 @@
 				padding: 1px;
 			}
 			.combobox{
-				width=100%;
 				font-size: 36px;
-				margin: -4px 0 0;
-				padding-left: 16px;
-				padding-right: 90px;
 				height: auto;
 				padding: 2px;
 				font-family: Helvetica;
 				min-width: 100%;
 				min-height: 2em;
 				background-color: #f5f5f5;
+				margin-left: 0.1em;
+				margin-right: 0.1em;
+			}
+			.custom_entry{
+				font-size: 36px;
+				padding: 2px;
+				font-family: Helvetica;
+				height: auto;
+				max-width: 25%;
+				margin-left: 0.5em;
+				margin-right: 0.2em;
+				min-height: 2em;
+				display: none;
 			}
 			.btn{
 				font-size: 36px;
@@ -115,6 +124,7 @@
 				var inputText = document.getElementById('input_box').value;
 				var outputBox = document.getElementById('output_box');
 				var lang = document.getElementById("langbox");
+				var langCustom = document.getElementById("lang_custom");
 				var selected_lang = lang.options[lang.selectedIndex].value;
 				var replace = "";
 				if (selected_lang == "value1" || selected_lang == "value2"){
@@ -124,7 +134,7 @@
 					replace = "ь";
 				}
 				if (selected_lang == "value5"){
-					replace = "ъь";
+					replace = "öъ";
 				}
 				if (selected_lang == "value6"){
 					replace = "å";
@@ -132,6 +142,15 @@
 						inputText = inputText.replace(RegExp(RUSAlphabet[i], 'g'), ENGAlphabet[i])
 						inputText = inputText.replace(RegExp(RUSAlphabet[i].toUpperCase(), 'g'), ENGAlphabet[i].toUpperCase())
 					}
+				}
+				if (selected_lang == "value0"){
+					replace = langCustom.value;
+					lang.style["min-width"] = "70%";
+					lang_custom.style.display = "inline";
+				}
+				else{
+					lang.style["min-width"] = "100%";
+					lang_custom.style.display = "none";
 				}
 				if (selected_lang == "value7"){
 					for (var i=0; i<RUSAlphabet.length; i++){
@@ -147,7 +166,7 @@
 						inputText = inputText.replace(RegExp(RUSAlphabet[i].toUpperCase(), 'g'), POLAlphabet[i].toUpperCase())
 					}
 				}
-				if (selected_lang == "value1" || selected_lang == "value3" || selected_lang == "value5" || selected_lang == "value6"){
+				if (selected_lang == "value1" || selected_lang == "value3" || selected_lang == "value5" || selected_lang == "value6" || selected_lang == "value0"){
 					for (var i=0; i<vowels.length; i++){
 						inputText = inputText.replace(RegExp(vowels[i], 'g'), replace)
 						inputText = inputText.replace(RegExp(vowels[i].toUpperCase(), 'g'), replace.toUpperCase())
@@ -204,11 +223,13 @@
 				<option value="value2">Ъ (ъъъъъъ)</option>
 				<option value="value3">Ь (твьрьжньь мьсь)</option>
 				<option value="value4">Ь (ьььььь)</option>
-				<option value="value5">ЪЬ</option>
+				<option value="value5">Öъ</option>
 				<option value="value6">Å</option>
 				<option value="value7">Cрпски</option>
 				<option value="value8">Polskie</option>
+				<option value="value0">Пъльзъвътъльскъй</option>
 			</select>
+			<input oninput="inputChange()" id="lang_custom" class="custom_entry"></input>
 			<hr>
 			<textarea id="output_box" readonly=true rows="1" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Пъръвъд" style="overflow: auto hidden; box-sizing: border-box; height: auto; direction: ltr; padding-bottom: 2px;"></textarea>
 		</div>
