@@ -8,7 +8,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/?utm_source=a2hs",
+  "start_url": "/translate/",
   "background_color": "#f5f5f5",
   "display": "standalone",
   "theme_color": "#ffffff"
