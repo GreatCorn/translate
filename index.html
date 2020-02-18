@@ -19,11 +19,10 @@
 			}
 			.input_box {
 				box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
-				max-height: 1100px;
+				max-height: 80%;
 				overflow-x: hidden;
 				overflow-y: auto;
 				position: relative;
-				height: 100%;
 				position: relative;
 				width: 100%;
 			}
@@ -75,6 +74,17 @@
 				min-height: 2em;
 				display: none;
 			}
+			.display_size{
+				font-size: 36px;
+				padding: 2px;
+				font-family: Helvetica;
+				height: auto;
+				max-width: 4em;
+				margin-left: 0.5em;
+				margin-right: 0.2em;
+				min-height: 1em;
+				display: inline;
+			}
 			.btn{
 				font-size: 36px;
 				margin-left: 0.1em;
@@ -84,6 +94,28 @@
 				padding: 2px;
 				width: 3em;
 				height: 3em;
+			}
+			.slider{
+				-webkit-appearance: none;
+				appearance: none;
+				width: 80%;
+				height: 0.5em;
+				background: #d3d3d3;
+				outline: none;
+				min-width: 80%;
+				margin-left: 0.5em;
+				margin-right: 0.5em;
+				margin-block-start: 0.5em;
+				margin-block-end: 0.5em;
+				padding: 2px;
+			}
+			.slider::-webkit-slider-thumb {
+				-webkit-appearance: none; /* Override default look */
+				appearance: none;
+				width: 3em; /* Set a specific slider handle width */
+				height: 3em; /* Slider handle height */
+				border-radius: 100%; 
+				background: #777777;
 			}
 			textarea{
 				font-family: Helvetica;
@@ -118,32 +150,33 @@
 			function inputChange(){
 				const vowels = ['а', 'е', 'и', 'о', 'у', 'ы', 'э', 'ю', 'я', 'і', 'ї', 'є', 'ё', 'a', 'e', 'i', 'o', 'u'];
 				const RUSAlphabet = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ы','ь','э','ю','я','і','ї','є','ґ','ъ'];
-				const ENGAlphabet = ['a','b','v','g','d','e','ö','j','z','i','y','k','l','m','n','o','p','r','s','t','u','f','h','c','å','x','ä','ý','ÿ','é','q','ä','i','ï','w','g','ü'];
-				const SRBAlphabet = ['а','б','в','г','д','ђ','е','ж','з','и','j','к','љ','м','њ','о','п','р','с','ћ','у','ф','х','ц','ч','џ','ш','и','j','е','jу','jа','и','jи','е','г',''];
+				const ENGAlphabet = ['a','b','v','g','d','e','ö','j','z','i','y','k','l','m','n','o','p','r','s','t','u','f','h','c','å','x','á','ý','ÿ','é','q','ä','î','í','w','g','ü'];
+				const SRBAlphabet = ['а','б','в','г','д','ђ','е','ж','з','и','j','к','љ','м','њ','о','п','р','с','ћ','у','ф','х','ц','ч','џ','ш','и','j','е','jу','jа','и','jи','е','г',"'"];
 				const POLAlphabet = ['a','b','w','g','d','je','io','ż','z','i','j','k','l','m','n','o','p','r','s','t','u','f','h','ts','ć','cz','ś','y','i','e','jó','ja','i','ji','je','g','ą'];
+				const JAPAlphabet = ['あ','び','ゑ','げ','で','え','拗','ぜ','せ','い','ひょ','け','ゐ','め','ね','お','ぴ','ら','せ','ち','う','ふ','へ','そ','ほ','ざ','じゃ','ょ','ゃ','音','ゅ','ぢ','い','ぎ','え','が','ん'];
 				var inputText = document.getElementById('input_box').value;
 				var outputBox = document.getElementById('output_box');
 				var lang = document.getElementById("langbox");
 				var langCustom = document.getElementById("lang_custom");
 				var selected_lang = lang.options[lang.selectedIndex].value;
 				var replace = "";
-				if (selected_lang == "value1" || selected_lang == "value2"){
+				if (selected_lang == "pirog" || selected_lang == "pirogP"){
 					replace = "ъ";
 				}
-				if (selected_lang == "value3" || selected_lang == "value4"){
+				if (selected_lang == "meat" || selected_lang == "meatP"){
 					replace = "ь";
 				}
-				if (selected_lang == "value5"){
+				if (selected_lang == "blyat"){
 					replace = "öъ";
 				}
-				if (selected_lang == "value6"){
+				if (selected_lang == "sverige"){
 					replace = "å";
 					for (var i=0; i<RUSAlphabet.length; i++){
 						inputText = inputText.replace(RegExp(RUSAlphabet[i], 'g'), ENGAlphabet[i])
 						inputText = inputText.replace(RegExp(RUSAlphabet[i].toUpperCase(), 'g'), ENGAlphabet[i].toUpperCase())
 					}
 				}
-				if (selected_lang == "value0"){
+				if (selected_lang == "custom"){
 					replace = langCustom.value;
 					lang.style["min-width"] = "70%";
 					lang_custom.style.display = "inline";
@@ -152,7 +185,7 @@
 					lang.style["min-width"] = "100%";
 					lang_custom.style.display = "none";
 				}
-				if (selected_lang == "value7"){
+				if (selected_lang == "serbian"){
 					for (var i=0; i<RUSAlphabet.length; i++){
 						inputText = inputText.replace(RegExp(RUSAlphabet[i], 'g'), SRBAlphabet[i])
 						inputText = inputText.replace(RegExp(RUSAlphabet[i].toUpperCase(), 'g'), SRBAlphabet[i].toUpperCase())
@@ -160,19 +193,43 @@
 						inputText = inputText.replace(RegExp(ENGAlphabet[i].toUpperCase(), 'g'), SRBAlphabet[i].toUpperCase())
 					}
 				}
-				if (selected_lang == "value8"){
+				if (selected_lang == "japan"){
+					for (var i=0; i<RUSAlphabet.length; i++){
+						inputText = inputText.replace(RegExp(RUSAlphabet[i], 'g'), JAPAlphabet[i])
+						inputText = inputText.replace(RegExp(RUSAlphabet[i].toUpperCase(), 'g'), JAPAlphabet[i].toUpperCase())
+						inputText = inputText.replace(RegExp(ENGAlphabet[i], 'g'), JAPAlphabet[i])
+						inputText = inputText.replace(RegExp(ENGAlphabet[i].toUpperCase(), 'g'), JAPAlphabet[i].toUpperCase())
+					}
+				}
+				if (selected_lang == "polish"){
 					for (var i=0; i<RUSAlphabet.length; i++){
 						inputText = inputText.replace(RegExp(RUSAlphabet[i], 'g'), POLAlphabet[i])
 						inputText = inputText.replace(RegExp(RUSAlphabet[i].toUpperCase(), 'g'), POLAlphabet[i].toUpperCase())
 					}
 				}
-				if (selected_lang == "value1" || selected_lang == "value3" || selected_lang == "value5" || selected_lang == "value6" || selected_lang == "value0"){
+				if (selected_lang == "kurlyk"){
+					for (var i=0; i<RUSAlphabet.length; i++){
+						inputText = inputText.replace(RegExp(SRBAlphabet[i], 'g'), ENGAlphabet[i])
+						inputText = inputText.replace(RegExp(SRBAlphabet[i].toUpperCase(), 'g'), ENGAlphabet[i].toUpperCase())
+						inputText = inputText.replace(RegExp(RUSAlphabet[i], 'g'), ENGAlphabet[i])
+						inputText = inputText.replace(RegExp(RUSAlphabet[i].toUpperCase(), 'g'), ENGAlphabet[i].toUpperCase())
+					}
+				}
+				if (selected_lang == "kurlykN"){
+					for (var i=0; i<RUSAlphabet.length; i++){
+						inputText = inputText.replace(RegExp(SRBAlphabet[i], 'g'), RUSAlphabet[i])
+						inputText = inputText.replace(RegExp(SRBAlphabet[i].toUpperCase(), 'g'), RUSAlphabet[i].toUpperCase())
+						inputText = inputText.replace(RegExp(ENGAlphabet[i], 'g'), RUSAlphabet[i])
+						inputText = inputText.replace(RegExp(ENGAlphabet[i].toUpperCase(), 'g'), RUSAlphabet[i].toUpperCase())
+					}
+				}
+				if (selected_lang == "pirog" || selected_lang == "meat" || selected_lang == "blyat" || selected_lang == "sverige" || selected_lang == "custom"){
 					for (var i=0; i<vowels.length; i++){
 						inputText = inputText.replace(RegExp(vowels[i], 'g'), replace)
 						inputText = inputText.replace(RegExp(vowels[i].toUpperCase(), 'g'), replace.toUpperCase())
 					}
 				}
-				if (selected_lang == "value2" || selected_lang == "value4"){
+				if (selected_lang == "pirogP" || selected_lang == "meatP"){
 					for (var i=0; i<RUSAlphabet.length; i++){
 						inputText = inputText.replace(RegExp(RUSAlphabet[i], 'g'), replace)
 						inputText = inputText.replace(RegExp(RUSAlphabet[i].toUpperCase(), 'g'), replace.toUpperCase())
@@ -239,6 +296,40 @@
 				  })
 			  );
 			});
+			
+			
+			function sliderChange(){
+				var sliderSize = document.getElementById('slider_size');
+				//console.log(sliderSize.value);
+				var inputBox = document.getElementById('input_box');
+				var outputBox = document.getElementById('output_box');
+				var value = slider_size.value;
+				inputBox.style["font-size"] = value;
+				outputBox.style["font-size"] = value;
+				document.getElementById('langbox').style["font-size"] = value;
+				document.getElementById('slider_show').value = value;
+			}
+			
+			function textChange(){
+				var value = document.getElementById('slider_show').value;
+				document.getElementById('slider_size').value = value;
+				sliderChange();
+			}
+			
+			function fileOpen(){
+				var input = document.getElementById('file-input');
+				var curFiles = input.files;
+				if(curFiles.length != 0) {
+					var reader = new FileReader();
+					reader.readAsText(curFiles[0], 'UTF-8');
+					reader.onload = readerEvent => {
+						var content = readerEvent.target.result;
+						clearText();
+						document.getElementById('input_box').value = content;
+						inputChange();
+					}
+				}
+			}
 		</script>
 		<link rel="shortcut icon" href="icon.png" type="image/x-icon">
 		<link rel="manifest" href="manifest.json" crossorigin="use-credentials">
@@ -257,27 +348,51 @@
 			<textarea id="input_box" oninput="inputChange()" rows="1" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Ввъдътъ тъкст" style="overflow: auto hidden; box-sizing: border-box; height: auto; direction: ltr; padding-bottom: 2px;"></textarea>
 			<hr>
 			<select id="langbox" onchange="inputChange()" class="combobox" name="Ъзък/дъълъкт">
-				<option id="pirog" value="value1">Ъ (вълънъй пъръг)</option>
-				<option id="pirogP" value="value2">Ъ (ъъъъъъ)</option>
-				<option id="meat" value="value3">Ь (твьрьжньь мьсь)</option>
-				<option id="meatP" value="value4">Ь (ьььььь)</option>
-				<option id="blyat" value="value5">Öъ</option>
-				<option id="sverige" value="value6">Å</option>
-				<option id="serbian" value="value7">Cрпски</option>
-				<option id="polish" value="value8">Polskie</option>
-				<option id="custom" value="value0">Пъльзъвътъльскъй</option>
+				<option id="pirog" value="pirog">Ъ (вълънъй пъръг)</option>
+				<option id="pirogP" value="pirogP">Ъ (ъъъъъъ)</option>
+				<option id="meat" value="meat">Ь (твьрьжньь мьсь)</option>
+				<option id="meatP" value="meatP">Ь (ьььььь)</option>
+				<option id="blyat" value="blyat">Öъ</option>
+				<option id="sverige" value="sverige">Å</option>
+				<option id="kurlyk" value="kurlyk">Khbvrylîss (Kurlykong'árd meráiä)</option>
+				<option id="kurlykN" value="kurlykN">Курлыкистaнскїй</option>
+				<option id="polish" value="polish">Polskie</option>
+				<option id="serbian" value="serbian">Cрпски</option>
+				<option id="japan" value="japan">日本人</option>
+				<option id="custom" value="custom">Пъльзъвътъльскъй</option>
 			</select>
 			<input oninput="inputChange()" id="lang_custom" class="custom_entry"></input>
 			<hr>
 			<textarea id="output_box" readonly=true rows="1" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Пъръвъд" style="overflow: auto hidden; box-sizing: border-box; height: auto; direction: ltr; padding-bottom: 2px;"></textarea>
 		</div>
-		<button onclick="clearText()" class=btn><img width=80em height=80em src=clear.png></button>
-		<button onclick="pasteText()" class=btn><img width=80em height=80em src=paste.png></button>
-		<button onclick="copyText()" class=btn><img width=80em height=80em src=copy.png></button>
+		<button onclick="clearText()" name="butn" class=btn><img width=80em height=80em src=clear.png></button>
+		<button onclick="pasteText()" name="butn" class=btn><img width=80em height=80em src=paste.png></button>
+		<button onclick="copyText()" name="butn" class=btn><img width=80em height=80em src=copy.png></button>
+		<button onclick="document.getElementById('file-input').click();" name="butn" class=btn><img width=80em height=80em src=open.png></button>
+		<input oninput="fileOpen()" id="file-input" type="file" style="display: none;" accept=".txt" />
+		<button onclick="saveText()" name="butn" class=btn><img width=80em height=80em src=save.png></button>
+		
+		<input id="slider_size" class="slider" oninput="sliderChange()" type="range" min="4" max="144" value="50" class="slider" id="myRange"></input>
+		<input type="number" oninput="textChange()" oninput="inputChange()" id="slider_show" class="display_size" value="50"></input>
+		
 		<script type="text/javascript">
 		function translate(){
 			var userLang = navigator.language || navigator.userLanguage;
-			if (userLang == "en") {
+			if (userLang == "es") {
+				document.getElementById('input_box').placeholder = "Ъngrъsъ tъxtъ";
+				document.getElementById('output_box').placeholder = "Trъdъccъъn";
+				document.getElementById("pirog").innerHTML = "Ъ (vъъlъnъy pъrъg)";
+				document.getElementById("meat").innerHTML = "Ь (tvьrьzhnьь mььsь)";
+				document.getElementById("custom").innerHTML = "Pьrsьnьlьzьdь";
+			}
+			else if (userLang == "pt") {
+				document.getElementById('input_box').placeholder = "Ъnsъrъr tъxtъ";
+				document.getElementById('output_box').placeholder = "Trъdъçъъ";
+				document.getElementById("pirog").innerHTML = "Ъ (vъъlъnъy pъrъg)";
+				document.getElementById("meat").innerHTML = "Ь (tvьrьzhñьь mььsь)";
+				document.getElementById("custom").innerHTML = "Cъstъm";
+			}
+			else if (userLang != "ru" && userLang != "uk" && userLang != "be") {
 				document.getElementById('input_box').placeholder = "Ъntъr tъxt";
 				document.getElementById('output_box').placeholder = "Trъnslъtъъn";
 				document.getElementById("pirog").innerHTML = "Ъ (vъъlъnъy pъrъg)";
