@@ -1,0 +1,137 @@
+<html lang="ru">
+	<head>
+		<style type="text/css">
+			@font-face {
+				font-family: "OpenSansBold";
+				src: url("OpenSansBold.ttf");
+			}
+			
+			.head_title {
+				text-align: left;
+				font-family: Helvetica;
+				color: #707070;
+				padding: 1px;
+				font-size: 50px;
+				letter-spacing: 3px;
+				font-weight: 500;
+				margin-left: 4px;
+				margin-right: 4px;
+				
+			}
+			.input_box {
+				box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+				max-height: 80%;
+				overflow-x: hidden;
+				overflow-y: auto;
+				position: relative;
+				position: relative;
+				width: 100%;
+			}
+			.head_image {
+				margin-left: 16px;
+				margin-right: 16px;
+			}
+			header {
+				display: block;
+				z-index: 986;
+				transition: box-shadow 250ms;
+				min-width: 320px;
+				position: relative;
+			}
+			div {
+				display: block;
+			}
+			body{
+				color: #777777;
+				background-color: #f5f5f5;
+			}
+			h1{
+				font-family: Helvetica;
+				font-size: 24px;
+				color: #000000;
+				font-size: 50px;
+				margin-top: 0px;
+				margin-bottom: 0px;
+				margin-left: 0.1em;
+			}
+			.container{
+				margin-left: 1em;
+				font-family: Helvetica;
+				font-size: 20px;
+				color: #000000;
+			}
+			p {
+				display: block;
+				margin-block-start: 0.5em;
+				margin-block-end: 0.5em;
+				margin-inline-start: 0px;
+				margin-inline-end: 0px;
+				padding: 1px;
+				
+			}
+			.menubtn{
+				font-size: 36px;
+				padding: 2px;
+				width: 3em;
+				height: 2em;
+				display: inline;
+				background-color: #ffffff;
+				border: none;
+				outline: none;
+			}
+			.menucontent{
+				overflow: hidden;
+				max-height: 0;
+				background-color: #f5f5f5;
+				transition: max-height 0.2s ease-out;
+			}
+		</style>
+		<title>  Ъ Trъnslъtъ </title>
+		<link rel="shortcut icon" href="icon.png" type="image/x-icon">
+		<script type="text/javascript">
+			function menuClick(){
+				var content = document.getElementsByClassName("menucontent")[0];
+				if (content.style.maxHeight) {
+					content.style.maxHeight = null;
+				}
+				else{
+					content.style.maxHeight = content.scrollHeight + "px";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<header role="banner" style="background-color:rgba(255,255,255,1)">
+			<div class="head_title">
+				<p>
+				<a href="index.html"><img class="head_image" src=icon.png align=CENTER width=80em height=80em></a>
+					Ъ Trъnslъtъ <button type="button" class="menubtn" style="float: right;" onclick="menuClick()"><img width=64em height=64em src=menu.png></button>
+				</p>
+				<div class="menucontent">
+					<ul>
+						<li><a id="home" href="index.html">Пъръвъдчък</a></li>
+						<li><a id="dialects" href="dialects.html">Ъзъкъ/дъълъктъ</a></li>
+						<li><a id="contact" href="contact.html">Кънтъктнъъ дъннъъ</a></li>
+						<li>
+							<a href="dialectsDE.html"><img src="flagDEU.svg"></a>
+							<a href="dialectsEN.html"><img src="flagENG.svg"></a>
+							<a href="dialectsES.html"><img src="flagESP.svg"></a>
+							<a href="dialectsRU.html"><img src="flagRUS.svg"></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<hr>
+		<h1>Спъсък пъддържъвъъщъхсъ длъ пъръвъдъ ъзъкъв/дъълъктъв:</h1>
+		<hr>
+		<p class="container"><b>Ъ (вълънъй пъръг)</b> – ъдън ъз глъвнъх ъзъкъв Кърлъкъстънъ, рънъъ дъълъкт чъстъгъ Ъ. Ръспръстрънън в бъльшъй чъстъ Кърлъкъстънъ (ъжнъъ, зъпъднъъ ъ цънтръльнъъ ръгъънъ).</p>
+		<p class="container"><b>Ъ (чъстъй)</b> – ъстъръвшъй Ъ. Ъспъльзъвълсъ в съвъръ-зъпъднъй чъстъ Кърлъкъстънъ (ъ тъкжъ в Блъчъх, Пъръгъльмъ ъ нъкътъръъ връмъ в Стъръм Нъзъргъръдъ) дъ пъръъдъ Пъръръждънъъ.</p>
+		<p class="container"><b>Ь (твъръжнъъ мъсъ)</b> – мълъръспръстрънъннъй ъстъръвшъй ъзък, ънълъг Ъ. Ъспъльзъвълсъ пъ бъльшъй чъстъ в въстъчнъх ръгъънъх Кърлъкъстънъ.</p>
+		<p class="container"><b>Ь (чъстъй)</b> – ъстъръвшъй Ь, нъ нъ нъмнъгъ стъръъ. Ъспъльзъвълсъ бъльшъ всъгъ в Кхбрълъвкъ ъ Ьвбъльскъ.</p>
+		<p class="container"><b>Öъ (блъть)</b> – тъжълъй дъълъкт Ъ, ръспръстрънън в съвърнъх ръгъънъх Кърлъкъстънъ (ъ тъкжъ в Мжъмсъ ъ Блъдъвкъ). Ъспъльзъътсъ с пъръъдъ Пъдънъъ Гърдъ.</p>
+		<p class="container"><b>Å (швъдъшъ)</b> – тъжъ дъълъкт Ъ, слъбъ ръспръстрънън в съвъръ-зъпъднъм ръгъънъ Кърлъкъстънъ. Ъспъльзъътсъ с пъръъдъ Ъльънсъ.</p>
+		<p class="container"><b>Khbvrylîss (кърлъкънгърдскъй тъпъръшнъй)</b> – ъстъръвшъй ъзък, ъспъльзъвъвшъйсъ в бъльшъй чъстъ Кърлъкънгърдъ дъ пъръъдъ Пъдънъъ Гърдъ. Съйчъс счътъътсъ въмършъм, нъ в нъкътъръх пъсълънъъх (Кхбрълъвкъ, Мъдъмжъск) ъщъ ъспъльзъътсъ.</p>
+		<p class="container"><b>Курлыкистaнскїй (кърлъкъстънскъй)</b> – ъдън ъз глъвнъх ъзъкъв Кърлъкъстънъ. Ръспръстрънън пъ бъльшъй чъстъ в ъжнъх ъ въстъчнъх ръгъънъх Кърлъкъстънъ (ъ тъкжъ в Нъзъръъмъ).</p>
+	</body>
+</html>

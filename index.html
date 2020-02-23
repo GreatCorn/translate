@@ -16,6 +16,7 @@
 				font-weight: 500;
 				margin-left: 4px;
 				margin-right: 4px;
+				
 			}
 			.input_box {
 				box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
@@ -94,6 +95,7 @@
 				padding: 2px;
 				width: 3em;
 				height: 3em;
+				display: inline;
 			}
 			.slider{
 				-webkit-appearance: none;
@@ -144,11 +146,27 @@
 				font-size: 50px;
 				font-weight: 500;
 			}
+			.menubtn{
+				font-size: 36px;
+				padding: 2px;
+				width: 3em;
+				height: 2em;
+				display: inline;
+				background-color: #ffffff;
+				border: none;
+				outline: none;
+			}
+			.menucontent{
+				overflow: hidden;
+				max-height: 0;
+				background-color: #f5f5f5;
+				transition: max-height 0.2s ease-out;
+			}
 		</style>
 		<title>  Ъ Trъnslъtъ </title>
 		<script type="text/javascript">
 			function inputChange(){
-				const vowels = ['а', 'е', 'и', 'о', 'у', 'ы', 'э', 'ю', 'я', 'і', 'ї', 'є', 'ё', 'a', 'e', 'i', 'o', 'u'];
+				const vowels = ['а', 'е', 'и', 'о', 'у', 'ы', 'э', 'ю', 'я', 'і', 'ї', 'є', 'ё', 'a', 'e', 'i', 'o', 'u', 'ü', 'ä', 'ö', 'å'];
 				const RUSAlphabet = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ы','ь','э','ю','я','і','ї','є','ґ','ъ'];
 				const ENGAlphabet = ['a','b','v','g','d','e','ö','j','z','i','y','k','l','m','n','o','p','r','s','t','u','f','h','c','å','x','á','ý','ÿ','é','q','ä','î','í','w','g','ü'];
 				const SRBAlphabet = ['а','б','в','г','д','ђ','е','ж','з','и','j','к','љ','м','њ','о','п','р','с','ћ','у','ф','х','ц','ч','џ','ш','и','j','е','jу','jа','и','jи','е','г',"'"];
@@ -309,6 +327,7 @@
 				inputBox.style["font-size"] = value;
 				outputBox.style["font-size"] = value;
 				document.getElementById('langbox').style["font-size"] = value;
+				document.getElementById('lang_custom').style["font-size"] = value;
 				document.getElementById('slider_show').value = value;
 			}
 			
@@ -333,17 +352,42 @@
 				}
 			}
 		</script>
+		<script type="text/javascript">
+			function menuClick(){
+				var content = document.getElementsByClassName("menucontent")[0];
+				if (content.style.maxHeight) {
+					content.style.maxHeight = null;
+				}
+				else{
+					content.style.maxHeight = content.scrollHeight + "px";
+				}
+			}
+		</script>
 		<link rel="shortcut icon" href="icon.png" type="image/x-icon">
 		<link rel="manifest" href="manifest.json" crossorigin="use-credentials">
 	</head>
-	<body onload="translate()">
+	<body onload="translate(navigator.language || navigator.userLanguage)">
 		<header role="banner" style="background-color:rgba(255,255,255,1)">
 			<div class="head_title">
 				<p>
-				<img class="head_image" src=icon.png align=CENTER width=80em height=80em>
-					Ъ Trъnslъtъ
+				<a href="index.html"><img class="head_image" src=icon.png align=CENTER width=80em height=80em></a>
+					Ъ Trъnslъtъ <button type="button" class="menubtn" style="float: right;" onclick="menuClick()"><img width=64em height=64em src=menu.png></button>
 				</p>
+				<div class="menucontent">
+					<ul>
+						<li><a id="home" href="index.html">Пъръвъдчък</a></li>
+						<li><a id="dialects" href="dialects.html">Ъзъкъ/дъълъктъ</a></li>
+						<li><a id="contact" href="contact.html">Кънтъктнъъ дъннъъ</a></li>
+						<li>
+							<img src="flagDEU.svg" onclick="langChange(4)">
+							<img src="flagENG.svg" onclick="langChange(1)">
+							<img src="flagESP.svg" onclick="langChange(2)">
+							<img src="flagRUS.svg" onclick="langChange(0)">
+						</li>
+					</ul>
+				</div>
 			</div>
+			
 		</header>
 		<hr>
 		<div class="input_box">
@@ -367,39 +411,105 @@
 			<hr>
 			<textarea id="output_box" readonly=true rows="1" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Пъръвъд" style="overflow: auto hidden; box-sizing: border-box; height: auto; direction: ltr; padding-bottom: 2px;"></textarea>
 		</div>
-		<button onclick="clearText()" name="butn" class=btn><img width=80em height=80em src=clear.png></button>
-		<button onclick="pasteText()" name="butn" class=btn><img width=80em height=80em src=paste.png></button>
-		<button onclick="copyText()" name="butn" class=btn><img width=80em height=80em src=copy.png></button>
-		<button onclick="document.getElementById('file-input').click();" name="butn" class=btn><img width=80em height=80em src=open.png></button>
-		<input oninput="fileOpen()" id="file-input" type="file" style="display: none;" accept=".txt" />
-		<button onclick="saveText()" name="butn" class=btn><img width=80em height=80em src=save.png></button>
+		<div class="input_box">
+			<button onclick="clearText()" name="butn" class="btn"><img width=80em height=80em src=clear.png></button>
+			<button onclick="pasteText()" name="butn" class="btn"><img width=80em height=80em src=paste.png></button>
+			<button onclick="copyText()" name="butn" class="btn"><img width=80em height=80em src=copy.png></button>
+			<button onclick="document.getElementById('file-input').click();" name="butn" class="btn"><img width=80em height=80em src=open.png></button>
+			<input oninput="fileOpen()" id="file-input" type="file" style="display: none;" accept=".txt" />
+			<button onclick="saveText()" name="butn" class="btn"><img width=80em height=80em src=save.png></button>
+		</div>
 		
 		<input id="slider_size" class="slider" oninput="sliderChange()" type="range" min="4" max="144" value="50" class="slider" id="myRange"></input>
 		<input type="number" oninput="textChange()" oninput="inputChange()" id="slider_show" class="display_size" value="50"></input>
 		
 		<script type="text/javascript">
-		function translate(){
-			var userLang = navigator.language || navigator.userLanguage;
+		function translate(userLang){
+			inputChange();
+			console.log(userLang);
 			if (userLang == "es") {
+				//SPANISH
 				document.getElementById('input_box').placeholder = "Ъngrъsъ tъxtъ";
 				document.getElementById('output_box').placeholder = "Trъdъccъъn";
 				document.getElementById("pirog").innerHTML = "Ъ (vъъlъnъy pъrъg)";
 				document.getElementById("meat").innerHTML = "Ь (tvьrьzhnьь mььsь)";
 				document.getElementById("custom").innerHTML = "Pьrsьnьlьzьdь";
+				
+				document.getElementById("home").innerHTML = "Trъdъctъr";
+				document.getElementById("dialects").innerHTML = "Ъdъъmъs/dъъlъctъs";
+				document.getElementById("contact").innerHTML = "Dъtъllъs dъ cъntъctъ";
+				document.getElementById("dialects").href = "dialectsES.html";
 			}
 			else if (userLang == "pt") {
+				//PORTUGUESE
 				document.getElementById('input_box').placeholder = "Ъnsъrъr tъxtъ";
 				document.getElementById('output_box').placeholder = "Trъdъçъъ";
 				document.getElementById("pirog").innerHTML = "Ъ (vъъlъnъy pъrъg)";
 				document.getElementById("meat").innerHTML = "Ь (tvьrьzhñьь mььsь)";
 				document.getElementById("custom").innerHTML = "Cъstъm";
+				document.getElementById("dialects").href = "dialectsPT.html";
+			}
+			else if (userLang == "de") {
+				//GERMAN
+				document.getElementById('input_box').placeholder = "Tъxt ъъngъbъn";
+				document.getElementById('output_box').placeholder = "Ъbъrsъtzъng";
+				document.getElementById("pirog").innerHTML = "Ъ (vъlъnъy pъrъg)";
+				document.getElementById("meat").innerHTML = "Ь (tvьrьzhnьь mььßь)";
+				document.getElementById("custom").innerHTML = "Bъnъtzъrdъfъnъъrt";
+				
+				document.getElementById("home").innerHTML = "Ъbъrsъtzъr";
+				document.getElementById("dialects").innerHTML = "Sprъchъn/Dъъlъktъ";
+				document.getElementById("contact").innerHTML = "Kъntъktdъtъn";
+				document.getElementById("dialects").href = "dialectsDE.html";
+			}
+			else if (userLang == "ru" || userLang == "uk" || userLang == "be") {
+				//RUSSIAN
+				document.getElementById('input_box').placeholder = "Ввъдътъ тъкст";
+				document.getElementById('output_box').placeholder = "Пъръвъд";
+				document.getElementById("pirog").innerHTML = "Ъ (вълънъй пъръг)";
+				document.getElementById("meat").innerHTML = "Ь (твьрьжньь мьсь)";
+				document.getElementById("custom").innerHTML = "Пъльзъвътъльскъй";
+				
+				document.getElementById("home").innerHTML = "Пъръвъдчък";
+				document.getElementById("dialects").innerHTML = "Ъзъкъ/дъълъктъ";
+				document.getElementById("contact").innerHTML = "Кънтъктнъъ дъннъъ";
+				document.getElementById("dialects").href = "dialects.html";
 			}
 			else if (userLang != "ru" && userLang != "uk" && userLang != "be") {
+				//ENGLISH
 				document.getElementById('input_box').placeholder = "Ъntъr tъxt";
 				document.getElementById('output_box').placeholder = "Trъnslъtъъn";
 				document.getElementById("pirog").innerHTML = "Ъ (vъъlъnъy pъrъg)";
 				document.getElementById("meat").innerHTML = "Ь (tvьrьzhnьь mььsь)";
 				document.getElementById("custom").innerHTML = "Cъstъm";
+				
+				document.getElementById("home").innerHTML = "Trъnslъtъr";
+				document.getElementById("dialects").innerHTML = "Lъngъъgъs/dъъlъcts";
+				document.getElementById("contact").innerHTML = "Cъntъct dъtъъls";
+				document.getElementById("dialects").href = "dialectsEN.html";
+			}
+		}
+		function langChange(langNum){
+			//0 - RU
+			//1 - EN
+			//2 - ES
+			//3 - PT
+			//4 - DE
+			//5 - FR
+			if(langNum == 0){
+				translate("ru");
+			}
+			if(langNum == 1){
+				translate("en");
+			}
+			if(langNum == 2){
+				translate("es");
+			}
+			if(langNum == 3){
+				translate("pt");
+			}
+			if(langNum == 4){
+				translate("de");
 			}
 		}
 		</script>

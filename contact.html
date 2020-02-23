@@ -1,0 +1,187 @@
+<html lang="ru">
+	<head>
+		<style type="text/css">
+			@font-face {
+				font-family: "OpenSansBold";
+				src: url("OpenSansBold.ttf");
+			}
+			
+			.head_title {
+				text-align: left;
+				font-family: Helvetica;
+				color: #707070;
+				padding: 1px;
+				font-size: 50px;
+				letter-spacing: 3px;
+				font-weight: 500;
+				margin-left: 4px;
+				margin-right: 4px;
+				
+			}
+			.input_box {
+				box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+				max-height: 80%;
+				overflow-x: hidden;
+				overflow-y: auto;
+				position: relative;
+				position: relative;
+				width: 100%;
+			}
+			.head_image {
+				margin-left: 16px;
+				margin-right: 16px;
+			}
+			header {
+				display: block;
+				z-index: 986;
+				transition: box-shadow 250ms;
+				min-width: 320px;
+				position: relative;
+			}
+			div {
+				display: block;
+			}
+			body{
+				color: #777777;
+				background-color: #f5f5f5;
+			}
+			h1{
+				font-family: Helvetica;
+				font-size: 24px;
+				color: #000000;
+				font-size: 50px;
+				margin-top: 0px;
+				margin-bottom: 0px;
+				margin-left: 0.1em;
+			}
+			.container{
+				margin-left: 1em;
+				font-family: Helvetica;
+				font-size: 20px;
+				color: #000000;
+			}
+			p {
+				display: block;
+				margin-block-start: 0.5em;
+				margin-block-end: 0.5em;
+				margin-inline-start: 0px;
+				margin-inline-end: 0px;
+				padding: 1px;
+				
+			}
+			.menubtn{
+				font-size: 36px;
+				padding: 2px;
+				width: 3em;
+				height: 2em;
+				display: inline;
+				background-color: #ffffff;
+				border: none;
+				outline: none;
+			}
+			.menucontent{
+				overflow: hidden;
+				max-height: 0;
+				background-color: #f5f5f5;
+				transition: max-height 0.2s ease-out;
+			}
+		</style>
+		<title>  Ъ Trъnslъtъ </title>
+		<link rel="shortcut icon" href="icon.png" type="image/x-icon">
+		<script type="text/javascript">
+			function menuClick(){
+				var content = document.getElementsByClassName("menucontent")[0];
+				if (content.style.maxHeight) {
+					content.style.maxHeight = null;
+				}
+				else{
+					content.style.maxHeight = content.scrollHeight + "px";
+				}
+			}
+		</script>
+	</head>
+	<body onload="translate(navigator.language || navigator.userLanguage)">
+		<header role="banner" style="background-color:rgba(255,255,255,1)">
+			<div class="head_title">
+				<p>
+				<a href="index.html"><img class="head_image" src=icon.png align=CENTER width=80em height=80em></a>
+					Ъ Trъnslъtъ <button type="button" class="menubtn" style="float: right;" onclick="menuClick()"><img width=64em height=64em src=menu.png></button>
+				</p>
+				<div class="menucontent">
+					<ul>
+						<li><a id="home" href="index.html">Пъръвъдчък</a></li>
+						<li><a id="dialects" href="dialects.html">Ъзъкъ/дъълъктъ</a></li>
+						<li><a id="contact" href="contact.html">Кънтъктнъъ дъннъъ</a></li>
+						<li>
+							<img src="flagDEU.svg" onclick="langChange(4)">
+							<img src="flagENG.svg" onclick="langChange(1)">
+							<img src="flagESP.svg" onclick="langChange(2)">
+							<img src="flagRUS.svg" onclick="langChange(0)">
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<hr>
+		<h1 id="conttitle">Кънтъктнъъ дъннъъ:</h1>
+		<hr>
+		<p class="container"><b id="gc">GrъъtCъrn (глъвнъй ръзръбътчък)</b></p>
+		<ul>
+			<li class="container">Gmъъl - <a href="mailto: lolinyourhouse@gmail.com">lolinyourhouse@gmail.com</a></p>
+			<li class="container">Yъhъъ - <a href="mailto: scpisolation@yahoo.com">scpisolation@yahoo.com</a></p>
+			<li class="container">YъъTъbъ - <a href="http://www.youtube.com/GreatCornholio231432">GreatCornholio231432</a></p>
+			<li class="container">Rъddъt - <a href="http://www.reddit.com/u/GreatCornDev">GreatCornDev</a></p>
+			<li class="container">Dъscъrd - GreatCorn#6987</p>
+		</ul>
+		<p align=CENTER><tt id="license">Ъ Trъnslъtъ ъвлъътсъ събствъннъстьъ GrъъtCъrnъ ъ ръспръстрънъътсъ пъд лъцънзъъй <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNЪ GPL v3.0</a>.</tt></p>
+		<script type="text/javascript">
+		function translate(userLang){
+			console.log(userLang);
+			if (userLang == "es") {
+				//SPANISH
+			}
+			else if (userLang == "pt") {
+				//PORTUGUESE
+			}
+			else if (userLang == "de") {
+				//GERMAN
+			}
+			else if (userLang == "ru" || userLang == "uk" || userLang == "be") {
+				//RUSSIAN
+				document.getElementById('conttitle').innerHTML = "Кънтъктнъъ дъннъъ:";
+				document.getElementById('gc').innerHTML = "GrъъtCъrn (глъвнъй ръзръбътчък)";
+				document.getElementById('license').innerHTML = 'Ъ Trъnslъtъ ъвлъътсъ събствъннъстьъ GrъъtCъrnъ ъ ръспръстрънъътсъ пъд лъцънзъъй <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNЪ GPL v3.0</a>.';
+			}
+			else if (userLang != "ru" && userLang != "uk" && userLang != "be") {
+				//ENGLISH
+				document.getElementById('conttitle').innerHTML = "Cъntъct dъtъъls:";
+				document.getElementById('gc').innerHTML = "GrъъtCъrn (mъъn dъvъlъpъr)";
+				document.getElementById('license').innerHTML = 'Ъ Trъnslъtъ ъs ъ prъpъrty ъf GrъъtCъrn ъnd ъs shъrъd ъndъr thъ <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNЪ GPL v3.0</a> lъcъnsъ.';
+			}
+		}
+		function langChange(langNum){
+			//0 - RU
+			//1 - EN
+			//2 - ES
+			//3 - PT
+			//4 - DE
+			//5 - FR
+			if(langNum == 0){
+				translate("ru");
+			}
+			if(langNum == 1){
+				translate("en");
+			}
+			if(langNum == 2){
+				translate("es");
+			}
+			if(langNum == 3){
+				translate("pt");
+			}
+			if(langNum == 4){
+				translate("de");
+			}
+		}
+		</script>
+	</body>
+</html>
